@@ -19,21 +19,18 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "ProductServlet", value = "/store/product")
+@WebServlet("/ProductServlet")
 public class ProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String productName = request.getParameter("name");
         if (productName != null) {
             Product product = (Product) DatabaseManager.getInstance().getProducts(productName);
-
             if (product != null) {
                 GetProductInfoResponse infoResponse = new GetProductInfoResponse();
                 infoResponse.setName(product.getProd_name());
                 infoResponse.setPrice(product.getProd_price());
                 infoResponse.setAmount(product.getProd_amount());
-
-
                 String jsonResponse = new ObjectMapper().writeValueAsString(infoResponse);
                 response.setContentType("application/json");
                 response.getWriter().write(jsonResponse);

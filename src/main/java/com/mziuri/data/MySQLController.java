@@ -18,7 +18,6 @@ public class MySQLController {
             preparedStatement = connection.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                // Process each row
             }
         } catch (SQLException e) {
             e.printStackTrace();

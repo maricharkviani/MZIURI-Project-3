@@ -15,7 +15,7 @@ public class DatabaseManager {
     private String[] productNames;
 
     private DatabaseManager() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("CandyShopPU");
+        entityManagerFactory = Persistence.createEntityManagerFactory("Candy Shop");
     }
 
     public static synchronized DatabaseManager getInstance() {

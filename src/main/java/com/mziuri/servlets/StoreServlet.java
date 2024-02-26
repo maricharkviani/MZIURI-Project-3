@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 
-@WebServlet(name = "StoreServlet", value = "/store")
+@WebServlet("/StoreServlet")
 public class StoreServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
