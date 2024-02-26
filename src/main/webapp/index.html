@@ -1,10 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+    <script>
+        function purchaseProduct(productName) {
+            var quantity = prompt("Enter quantity:");
+            if (quantity !== null && !isNaN(quantity) && quantity.trim() !== "") {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/store/product?name=" + encodeURIComponent(productName), true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            alert("Purchase successful!");
+                            window.location.reload();
+                        } else {
+                            alert("Your purchase has failed!");
+                        }
+                    }
+                };
+                xhr.send(JSON.stringify({name: productName, amount: parseInt(quantity)}));
+            }
+        }
+    </script>
 </head>
 <body>
+<h1>Products</h1>
+<table border="1">
+    <tr>
+        <th>Names</th>
+        <th>Price</th>
+        <th>Availability</th>
+        <th>Action</th>
+    </tr>
 
+    <tr>
+        <td>Snickers</td>
+        <td>$3.50</td>
+        <td>28</td>
+        <td>
+            <button onclick="purchaseProduct('Snickers')">Purchase</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Twix</td>
+        <td>$2.50</td>
+        <td>17</td>
+        <td>
+            <button onclick="purchaseProduct('Twix')">Purchase</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Mars</td>
+        <td>$2.80</td>
+        <td>16</td>
+        <td>
+            <button onclick="purchaseProduct('Mars')">Purchase</button>
+        </td>
+    </tr>
+    <tr>
+    <tr>
+        <td>Java</td>
+        <td>$5.00</td>
+        <td>21</td>
+        <td>
+            <button onclick="purchaseProduct('Java')">Purchase</button>
+        </td>
+    </tr>
+    <tr>
+        <td>Milka</td>
+        <td>$4.50</td>
+        <td>23</td>
+        <td>
+            <button onclick="purchaseProduct('Milka')">Purchase</button>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
